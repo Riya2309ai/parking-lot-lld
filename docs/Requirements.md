@@ -1,27 +1,39 @@
 # Parking Lot Requirements
+## 1. Overview
 
-## Functional Requirements
+The Parking Lot Management System is responsible for managing vehicle entry,
+parking allocation, ticket generation, payment, and vehicle exit.
+
+The system should support multiple floors, different vehicle types, multiple
+parking spot types, and multiple entry/exit gates.
+
+The design should be scalable, extensible, maintainable, and thread-safe.
+
+## 2. Functional Requirements
 
 ### Vehicle Operations
 - Park a vehicle
 - Remove a vehicle
-- Generate parking ticket
-- Calculate parking charges
+- Search a parked vehicle
+- Track parking history
 
 ### Vehicle Types
 - Motorcycle
 - Car
 - Truck
+- Electric Vehicle
 
 ### Parking Spot Types
 - Motorcycle Spot
 - Compact Spot
 - Large Spot
+- Electric spot
 
 ### Parking Lot
 - Multiple Floors
 - Multiple Entry Gates
 - Multiple Exit Gates
+- Display Boards
 
 ### Parking Allocation
 - Allocate nearest available spot
@@ -29,15 +41,21 @@
 - Free spot on exit
 
 ### Ticket
-- Ticket Number
+- Generate Ticket
 - Entry Time
 - Exit Time
 - Parking Spot
 - Vehicle Information
 
+## Payment
+- Cash
+- Card
+- UPI
+
+  
 ### Pricing
 - Hourly pricing
-- Different pricing for different vehicle types
+-Future support for Dynamic Pricing
 
 
 
@@ -46,11 +64,25 @@
 
 
 
-- ## Non Functional Requirements
+- ## 3. Non Functional Requirements
 
-- Extensible
-- Maintainable
-- Scalable
-- Thread-safe
+- High Availability
+- Scalable Design
+- Extensible Architecture
+- Thread Safe
+- Low Coupling
 - High Cohesion
+- Easy to Test
+- SOLID Principles
+
+
+- # 4. Future Enhancements
+
+- Online Slot Booking
+- Reservation System
+- Monthly Passes
+- EV Charging
+- Parking Analytics
+- Mobile Application
+- Dynamic Pricing
 - Low Coupling
