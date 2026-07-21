@@ -38,3 +38,19 @@
 ### Pricing
 - Hourly pricing
 - Different pricing for different vehicle types
+
+
+
+
+
+
+
+
+- ## Non Functional Requirements
+
+- Extensible
+- Maintainable
+- Scalable
+- Thread-safe
+- High Cohesion
+- Low Coupling
