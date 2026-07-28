@@ -1,6 +1,7 @@
 package com.riya.parkinglot.models;
 
 import com.riya.parkinglot.enums.SpotType;
+import com.riya.parkinglot.enums.VehicleType;
 
 public abstract class ParkingSpot {
     private String spotId;
@@ -23,6 +24,29 @@ public abstract class ParkingSpot {
     }
 
     public boolean isAvailable() {
-        return isOccupied==false;
+        return !isOccupied;
+    }
+
+    public void setOccupied(boolean b) {
+        isOccupied=b;
+    }
+
+
+    public boolean canFitVehicle(Vehicle vehicle) {
+
+        return switch (spotType) {
+
+            case MOTORCYCLE ->
+                    vehicle.getVehicleType() == VehicleType.MOTORCYCLE;
+
+            case COMPACT ->
+                    vehicle.getVehicleType() == VehicleType.CAR;
+
+            case LARGE ->
+                    vehicle.getVehicleType() == VehicleType.TRUCK;
+
+            case ELECTRIC ->
+                    vehicle.getVehicleType() == VehicleType.ELECTRIC;
+        };
     }
 }

@@ -1,13 +1,16 @@
 package com.riya.parkinglot.models;
 
 import com.riya.parkinglot.enums.TicketStatus;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class ParkingTicket {
     private String ticketId;
     private LocalDateTime entryTime;
