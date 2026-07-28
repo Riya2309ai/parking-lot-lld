@@ -12,7 +12,6 @@ import java.util.UUID;
 
 @Getter
 @Setter
-@AllArgsConstructor
 public class ParkingLot {
     private String name;
     private String address;
@@ -27,13 +26,8 @@ public class ParkingLot {
         }
         parkingSpot.setOccupied(true);
 
-        ParkingTicket ticket = new ParkingTicket();
-
-        ticket.setTicketId(UUID.randomUUID().toString());
-        ticket.setVehicle(vehicle);
-        ticket.setParkingSpot(parkingSpot);
-        ticket.setEntryTime(LocalDateTime.now());
-        ticket.setTicketStatus(TicketStatus.ACTIVE);
+        String ticketId = UUID.randomUUID().toString();
+        ParkingTicket ticket = new ParkingTicket(ticketId, vehicle, parkingSpot);
 
         return ticket;
 
