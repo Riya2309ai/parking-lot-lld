@@ -22,4 +22,7 @@ public abstract class ParkingSpot {
         this.isOccupied=false;
     }
 
+    public boolean isAvailable() {
+        return isOccupied==false;
+    }
 }
