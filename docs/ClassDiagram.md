@@ -1,7 +1,4 @@
-# Parking Lot Management System - UML Class Diagram
-
-        ```mermaid
-        classDiagram
+classDiagram
 
         class ParkingLot {
         - String name
@@ -93,4 +90,3 @@ class Vehicle {
             ExitGate --> PricingStrategy
 
             DisplayBoard --> ParkingFloor
-            ```
