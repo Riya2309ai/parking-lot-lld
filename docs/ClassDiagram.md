@@ -1,40 +1,30 @@
-classDiagram
-        direction TB
+# Parking Lot Management System - UML Class Diagram
 
-        %% Core parking structure
-        class ParkingLot {
+        ```mermaid
+        classDiagram
+
+        class ParkingLot{
         -String name
         -String address
-        -List~ParkingFloor~ parkingFloors
         +parkVehicle()
         +exitVehicle()
         }
 
-        class ParkingFloor {
+        class ParkingFloor{
         -int floorNumber
-        -List~ParkingSpot~ parkingSpots
         }
 
-        class ParkingSpot {
-<<abstract>>
+        class ParkingSpot{
+<<Abstract>>
 -String spotId
 -boolean occupied
--Vehicle parkedVehicle
 +parkVehicle()
 +removeVehicle()
 }
 
-%% Parking spot types
-class CompactSpot
-class LargeSpot
-class MotorcycleSpot
-class ElectricSpot
-
-%% Vehicle hierarchy
-class Vehicle {
-<<abstract>>
+class Vehicle{
+<<Abstract>>
     -String vehicleNumber
-    -VehicleType vehicleType
     }
 
     class Car
@@ -42,61 +32,11 @@ class Vehicle {
     class Motorcycle
     class ElectricVehicle
 
-    %% Ticketing and payment
-    class ParkingTicket {
-    -String ticketId
-    -LocalDateTime entryTime
-    -LocalDateTime exitTime
-    }
+    ParkingLot "1" *-- "*" ParkingFloor
+    ParkingFloor "1" *-- "*" ParkingSpot
 
-    class Payment {
-    -double amount
-    -PaymentMode paymentMode
-    }
-
-    %% Gates and display
-    class EntryGate
-    class ExitGate
-    class DisplayBoard
-
-    %% Strategies
-    class ParkingStrategy {
-    <<interface>>
-        +getAvailableSpot()
-        }
-
-        class PricingStrategy {
-        <<interface>>
-            +calculateFee()
-            }
-
-            %% Composition
-            ParkingLot "1" *-- "*" ParkingFloor : contains
-            ParkingFloor "1" *-- "*" ParkingSpot : contains
-
-            %% Vehicle and spot associations
-            ParkingSpot "0..1" --> "0..1" Vehicle : parks
-            ParkingTicket "1" --> "1" Vehicle : records
-            ParkingTicket "1" --> "1" ParkingSpot : reserves
-
-            %% Gate operations
-            EntryGate "1" --> "*" ParkingTicket : issues
-            ExitGate "1" --> "*" ParkingTicket : closes
-            ExitGate "1" --> "*" Payment : processes
-
-            %% Vehicle inheritance
-            Vehicle <|-- Car
-            Vehicle <|-- Truck
-            Vehicle <|-- Motorcycle
-            Vehicle <|-- ElectricVehicle
-
-            %% Spot inheritance
-            ParkingSpot <|-- CompactSpot
-            ParkingSpot <|-- LargeSpot
-            ParkingSpot <|-- MotorcycleSpot
-            ParkingSpot <|-- ElectricSpot
-
-            %% Strategy dependencies
-            ParkingLot ..> ParkingStrategy : uses
-            ExitGate ..> PricingStrategy : uses
-            DisplayBoard --> ParkingFloor : displays
+    Vehicle <|-- Car
+    Vehicle <|-- Truck
+    Vehicle <|-- Motorcycle
+    Vehicle <|-- ElectricVehicle
+    ```
