@@ -1,16 +1,21 @@
 package com.riya.parkinglot.service;
 
+import com.riya.parkinglot.enums.SpotType;
 import com.riya.parkinglot.models.ParkingFloor;
 import com.riya.parkinglot.models.ParkingLot;
 import com.riya.parkinglot.models.ParkingSpot;
 
+import java.util.EnumMap;
+import java.util.Map;
+
 public class DisplayBoardService {
     public void displayAvailableSpots(ParkingLot parkingLot){
 
-        int compact = 0;
-        int large = 0;
-        int motorcycle = 0;
-        int electric = 0;
+        Map<SpotType, Integer> availableSpots = new EnumMap<>(SpotType.class);
+        // Initialize all counts to 0
+        for (SpotType type : SpotType.values()) {
+            availableSpots.put(type, 0);
+        }
 
         for (ParkingFloor floor : parkingLot.getParkingFloors()) {
 
@@ -18,28 +23,20 @@ public class DisplayBoardService {
 
                 if (!spot.isOccupied()) {
 
-                    switch (spot.getSpotType()) {
+                    SpotType type = spot.getSpotType();
 
-                        case COMPACT -> compact++;
-
-                        case LARGE -> large++;
-
-                        case MOTORCYCLE -> motorcycle++;
-
-                        case ELECTRIC -> electric++;
-                    }
+                    availableSpots.put(type, availableSpots.get(type) + 1);
                 }
             }
         }
         System.out.println("\n========= DISPLAY BOARD =========");
 
-        System.out.println("Compact Spots     : " + compact);
+        for (Map.Entry<SpotType, Integer> entry : availableSpots.entrySet()) {
 
-        System.out.println("Large Spots       : " + large);
-
-        System.out.println("Motorcycle Spots  : " + motorcycle);
-
-        System.out.println("Electric Spots    : " + electric);
+            System.out.printf("%-15s : %d%n",
+                    entry.getKey(),
+                    entry.getValue());
+        }
 
         System.out.println("=================================");
 
