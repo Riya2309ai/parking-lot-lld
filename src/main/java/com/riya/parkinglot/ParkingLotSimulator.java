@@ -5,6 +5,7 @@ import com.riya.parkinglot.payments.PaymentStrategy;
 import com.riya.parkinglot.payments.UpiPayment;
 import com.riya.parkinglot.pricing.FeeCalculator;
 import com.riya.parkinglot.pricing.HourlyFeeCalculator;
+import com.riya.parkinglot.service.DisplayBoardService;
 import com.riya.parkinglot.service.ParkingService;
 import com.riya.parkinglot.strategies.NearestParkingStrategy;
 import com.riya.parkinglot.strategies.ParkingStrategy;
@@ -49,6 +50,9 @@ public class ParkingLotSimulator {
 
         EntryGate entryGate = new EntryGate("E1");
         ExitGate exitGate = new ExitGate("X1");
+
+        DisplayBoardService displayBoard = new DisplayBoardService();
+        displayBoard.displayAvailableSpots(parkingLot);
 
         ParkingTicket ticket = parkingService.parkVehicle(car,  entryGate);
 
