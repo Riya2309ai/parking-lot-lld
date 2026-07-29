@@ -10,14 +10,17 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
-@Setter
 @NoArgsConstructor
 public class ParkingTicket {
     private String ticketId;
     private LocalDateTime entryTime;
-    private LocalDateTime exitTime;
     private Vehicle vehicle;
     private ParkingSpot parkingSpot;
+
+    @Setter
+    private LocalDateTime exitTime;
+
+    @Setter
     private TicketStatus ticketStatus;
 
     public ParkingTicket(String ticketId, Vehicle vehicle, ParkingSpot parkingSpot) {
