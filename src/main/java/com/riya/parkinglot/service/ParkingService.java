@@ -31,7 +31,7 @@ public class ParkingService {
         return null;
     }
 
-    public ParkingTicket parkVehicle(Vehicle vehicle){
+    public ParkingTicket parkVehicle(Vehicle vehicle, EntryGate entryGate){
         ParkingSpot parkingSpot = findAvailableSpot(vehicle);
 
         if(parkingSpot == null){
@@ -39,16 +39,17 @@ public class ParkingService {
         }
         parkingSpot.assignVehicle(vehicle);
         String ticketId = UUID.randomUUID().toString();
-        ParkingTicket ticket = new ParkingTicket(ticketId, vehicle, parkingSpot);
+        ParkingTicket ticket = new ParkingTicket(ticketId, vehicle, parkingSpot,  entryGate);
 
         parkingLot.getActiveTickets().put(ticketId, ticket);
         return ticket;
 
     }
 
-    public double unparkVehicle(ParkingTicket ticket){
+    public double unparkVehicle(ParkingTicket ticket, ExitGate exitGate){
         ParkingSpot parkingSpot = ticket.getParkingSpot();
         ticket.setExitTime(LocalDateTime.now());
+        ticket.setExitGate(exitGate);
         double fee=parkingLot.getFeeCalculator().calculateFee(ticket);
         boolean paymentSuccessful= parkingLot.getPaymentStrategy().pay(fee);
 
