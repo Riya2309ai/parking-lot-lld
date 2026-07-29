@@ -35,8 +35,7 @@ public class ParkingService {
         if(parkingSpot == null){
             throw new RuntimeException("Parking Lot is full");
         }
-        parkingSpot.setOccupied(true);
-
+        parkingSpot.assignVehicle(vehicle);
         String ticketId = UUID.randomUUID().toString();
         ParkingTicket ticket = new ParkingTicket(ticketId, vehicle, parkingSpot);
 
@@ -54,7 +53,7 @@ public class ParkingService {
         if(!paymentSuccessful){
             throw new RuntimeException("Payment failed");
         }
-        parkingSpot.setOccupied(false);
+        parkingSpot.removeVehicle();
         ticket.setTicketStatus(TicketStatus.PAID);
         parkingLot.getActiveTickets().remove(ticket.getTicketId());
 
