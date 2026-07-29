@@ -1,7 +1,4 @@
-# Parking Lot Management System - UML Class Diagram
-
-        ```mermaid
-        classDiagram
+classDiagram
 
         class ParkingLot {
         - String name
@@ -17,80 +14,79 @@
         }
 
         class ParkingSpot {
-<<abstract>>
-- String spotId
-- boolean occupied
-- Vehicle parkedVehicle
-+ parkVehicle()
-+ removeVehicle()
-}
+        <<abstract>>
+        - String spotId
+        - boolean occupied
+        - Vehicle parkedVehicle
+        + parkVehicle()
+        + removeVehicle()
+        }
 
-class CompactSpot
-class LargeSpot
-class MotorcycleSpot
-class ElectricSpot
+        class CompactSpot
+        class LargeSpot
+        class MotorcycleSpot
+        class ElectricSpot
 
-class Vehicle {
-<<abstract>>
-    - String vehicleNumber
-    - VehicleType vehicleType
-    }
+       class Vehicle {
+       <<abstract>>
+       - String vehicleNumber
+       - VehicleType vehicleType
+       }
 
-    class Car
-    class Truck
-    class Motorcycle
-    class ElectricVehicle
+        class Car
+        class Truck
+        class Motorcycle
+        class ElectricVehicle
 
-    class ParkingTicket {
-    - String ticketId
-    - LocalDateTime entryTime
-    - LocalDateTime exitTime
-    }
+        class ParkingTicket {
+        - String ticketId
+        - LocalDateTime entryTime
+        - LocalDateTime exitTime
+        }
 
-    class EntryGate
+        class EntryGate
 
-    class ExitGate
+        class ExitGate
 
-    class Payment {
-    - double amount
-    - PaymentMode paymentMode
-    }
+        class Payment {
+        - double amount
+        - PaymentMode paymentMode
+        }
 
-    class DisplayBoard
+        class DisplayBoard
 
-    class ParkingStrategy {
-    <<interface>>
+        class ParkingStrategy {
+        <<interface>>
         + getAvailableSpot()
         }
 
         class PricingStrategy {
         <<interface>>
-            + calculateFee()
-            }
+        + calculateFee()
+        }
 
-            ParkingLot "1" *-- "*" ParkingFloor
-            ParkingFloor "1" *-- "*" ParkingSpot
+        ParkingLot "1" *-- "*" ParkingFloor
+        ParkingFloor "1" *-- "*" ParkingSpot
 
-            ParkingSpot --> Vehicle
-            ParkingTicket --> Vehicle
-            ParkingTicket --> ParkingSpot
+        ParkingSpot --> Vehicle
+        ParkingTicket --> Vehicle
+        ParkingTicket --> ParkingSpot
 
-            EntryGate --> ParkingTicket
-            ExitGate --> ParkingTicket
-            ExitGate --> Payment
+        EntryGate --> ParkingTicket
+        ExitGate --> ParkingTicket
+        ExitGate --> Payment
 
-            Vehicle <|-- Car
-            Vehicle <|-- Truck
-            Vehicle <|-- Motorcycle
-            Vehicle <|-- ElectricVehicle
+        Vehicle <|-- Car
+        Vehicle <|-- Truck
+        Vehicle <|-- Motorcycle
+        Vehicle <|-- ElectricVehicle
 
-            ParkingSpot <|-- CompactSpot
-            ParkingSpot <|-- LargeSpot
-            ParkingSpot <|-- MotorcycleSpot
-            ParkingSpot <|-- ElectricSpot
+        ParkingSpot <|-- CompactSpot
+        ParkingSpot <|-- LargeSpot
+        ParkingSpot <|-- MotorcycleSpot
+        ParkingSpot <|-- ElectricSpot
 
-            ParkingLot --> ParkingStrategy
-            ExitGate --> PricingStrategy
+        ParkingLot --> ParkingStrategy
+        ExitGate --> PricingStrategy
 
-            DisplayBoard --> ParkingFloor
-            ```
+        DisplayBoard --> ParkingFloor
