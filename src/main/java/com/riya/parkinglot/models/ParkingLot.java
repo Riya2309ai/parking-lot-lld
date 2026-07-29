@@ -35,9 +35,4 @@ public class ParkingLot {
         this.feeCalculator = feeCalculator;
         this.paymentStrategy = paymentStrategy;
     }
-
-
-
-
-
 }

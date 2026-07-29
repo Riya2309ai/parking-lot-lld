@@ -7,6 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ParkingLotLldApplication {
 
 	public static void main(String[] args) {
+
+		ParkingLotSimulator.run();
+
 		SpringApplication.run(ParkingLotLldApplication.class, args);
 	}
 
