@@ -1,5 +1,7 @@
 package com.riya.parkinglot;
 
+import com.riya.parkinglot.enums.VehicleType;
+import com.riya.parkinglot.factory.VehicleFactory;
 import com.riya.parkinglot.models.*;
 import com.riya.parkinglot.payments.PaymentStrategy;
 import com.riya.parkinglot.payments.UpiPayment;
@@ -46,7 +48,7 @@ public class ParkingLotSimulator {
         ParkingService parkingService =
                 new ParkingService(parkingLot);
 
-        Vehicle car = new Car("RJ14AB1234");
+        Vehicle car = VehicleFactory.createVehicle(VehicleType.CAR,"RJ14AB1234");
 
         EntryGate entryGate = new EntryGate("E1");
         ExitGate exitGate = new ExitGate("X1");
