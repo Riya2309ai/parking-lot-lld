@@ -1,3 +1,5 @@
+[![Java CI with Maven](https://github.com/Riya2309ai/parking-lot-lld/actions/workflows/maven.yml/badge.svg?branch=main)](https://github.com/Riya2309ai/parking-lot-lld/actions/workflows/maven.yml)
+
 # 🚗 Parking Lot LLD
 
 A production-quality Java implementation of the classic **Parking Lot Low-Level Design (LLD)** problem. This project focuses on writing clean, extensible, and maintainable object-oriented code by applying **SOLID principles**, **design patterns**, and **clean architecture** with **extensible and maintainable code**.
