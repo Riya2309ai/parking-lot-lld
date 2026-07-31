@@ -11,7 +11,6 @@ public class VehicleFactory {
             case TRUCK -> new Truck(vehicleNumber);
             case MOTORCYCLE -> new MotorCycle(vehicleNumber);
             case ELECTRIC -> new ElectricVehicle(vehicleNumber);
-
         };
     }
 }
