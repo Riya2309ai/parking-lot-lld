@@ -62,12 +62,10 @@ This project follows:
 
 ---
 
-## 📚 Design Patterns (Planned)
+## 📚 Design Patterns used: 
 
-- Strategy Pattern
-- Factory Pattern
-- Singleton Pattern
-- Builder Pattern (Optional)
+- Strategy Pattern : Encapsulates parking allocation and fee calculation logic.
+- Factory Pattern : Creates vehicle objects based on vehicle type.
 
 ---
 
