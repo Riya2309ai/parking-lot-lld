@@ -1,6 +1,8 @@
 package com.riya.parkinglot.service;
 
 import com.riya.parkinglot.enums.TicketStatus;
+import com.riya.parkinglot.exception.ParkingLotFullException;
+import com.riya.parkinglot.exception.PaymentFailedException;
 import com.riya.parkinglot.models.*;
 import com.riya.parkinglot.strategies.ParkingStrategy;
 
@@ -29,29 +31,30 @@ public class ParkingService {
         return null;
     }
 
-    public ParkingTicket parkVehicle(Vehicle vehicle){
+    public ParkingTicket parkVehicle(Vehicle vehicle, EntryGate entryGate){
         ParkingSpot parkingSpot = findAvailableSpot(vehicle);
 
         if(parkingSpot == null){
-            throw new RuntimeException("Parking Lot is full");
+            throw new ParkingLotFullException("Parking Lot is full and no Spot is available right now");
         }
         parkingSpot.assignVehicle(vehicle);
         String ticketId = UUID.randomUUID().toString();
-        ParkingTicket ticket = new ParkingTicket(ticketId, vehicle, parkingSpot);
+        ParkingTicket ticket = new ParkingTicket(ticketId, vehicle, parkingSpot,  entryGate);
 
         parkingLot.getActiveTickets().put(ticketId, ticket);
         return ticket;
 
     }
 
-    public double unparkVehicle(ParkingTicket ticket){
+    public double unparkVehicle(ParkingTicket ticket, ExitGate exitGate){
         ParkingSpot parkingSpot = ticket.getParkingSpot();
         ticket.setExitTime(LocalDateTime.now());
+        ticket.setExitGate(exitGate);
         double fee=parkingLot.getFeeCalculator().calculateFee(ticket);
         boolean paymentSuccessful= parkingLot.getPaymentStrategy().pay(fee);
 
         if(!paymentSuccessful){
-            throw new RuntimeException("Payment failed");
+            throw new PaymentFailedException("Payment failed for vehicle : " + ticket.getVehicle().getVehicleNumber());
         }
         parkingSpot.removeVehicle();
         ticket.setTicketStatus(TicketStatus.PAID);

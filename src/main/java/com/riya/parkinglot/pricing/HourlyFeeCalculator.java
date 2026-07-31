@@ -17,7 +17,7 @@ public class HourlyFeeCalculator implements FeeCalculator {
 
         long hours = duration.toHours();
 
-        if(duration.toMinutes()%60==0){
+        if(duration.toMinutes()%60!=0){
             hours+=1;
         }
         return hours * HOURLY_RATE ;

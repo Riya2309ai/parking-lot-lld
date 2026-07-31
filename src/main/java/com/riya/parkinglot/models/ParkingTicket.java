@@ -1,29 +1,34 @@
 package com.riya.parkinglot.models;
 
 import com.riya.parkinglot.enums.TicketStatus;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Getter
-@Setter
-@NoArgsConstructor
 public class ParkingTicket {
-    private String ticketId;
-    private LocalDateTime entryTime;
+    private final String ticketId;
+    private final LocalDateTime entryTime;
+    private final Vehicle vehicle;
+    private final ParkingSpot parkingSpot;
+    private final EntryGate entryGate;
+
+    @Setter
+    private ExitGate exitGate;
+
+    @Setter
     private LocalDateTime exitTime;
-    private Vehicle vehicle;
-    private ParkingSpot parkingSpot;
+
+    @Setter
     private TicketStatus ticketStatus;
 
-    public ParkingTicket(String ticketId, Vehicle vehicle, ParkingSpot parkingSpot) {
+    public ParkingTicket(String ticketId, Vehicle vehicle, ParkingSpot parkingSpot, EntryGate entryGate) {
         this.ticketId = ticketId;
         this.vehicle = vehicle;
         this.parkingSpot =parkingSpot;
+        this.entryGate = entryGate;
+
         this.entryTime = LocalDateTime.now();
         this.ticketStatus=TicketStatus.ACTIVE;
     }
